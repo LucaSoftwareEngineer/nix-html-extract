@@ -7,11 +7,11 @@
 
     outputs = { self, nixpkgs }:
         let
-            sistemaOperativo = "x86_64-linux";
-            pacchettiPerSistemaOperativo = nixpkgs.legacyPackages.${sistemaOperativo};
+            system = "x86_64-linux";
+            pkgs = nixpkgs.legacyPackages.${system};
         in {
-            devShells.${sistemaOperativo}.default = pacchettiPerSistemaOperativo.mkShell {
-                buildInputs = [ pacchettiPerSistemaOperativo.curl ];
+            devShells.${system}.default = pkgs.mkShell {
+                buildInputs = [ pkgs.curl ];
             };
         };
         
